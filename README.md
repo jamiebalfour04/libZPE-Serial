@@ -1,0 +1,1 @@
+The official ZPE serial port communications library. This library is relatively new in it's current state and requires a bit of work to keep it up to date. It uses the com.fazecast.jSerialComm library.
