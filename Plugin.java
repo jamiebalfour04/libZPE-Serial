@@ -77,7 +77,7 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public String getName() {
-    return "libMQTT";
+    return "libZPE-Serial";
   }
 
   @Override
