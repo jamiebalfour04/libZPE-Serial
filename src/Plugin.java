@@ -1,9 +1,13 @@
+package src;
+
 import jamiebalfour.zpe.core.YASSByteCodes;
+import jamiebalfour.zpe.core.ZPEFunction;
 import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
 import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPECustomFunction;
 import jamiebalfour.zpe.interfaces.ZPELibrary;
 import com.fazecast.jSerialComm.SerialPort;
+import jamiebalfour.zpe.interfaces.ZPEType;
 import jamiebalfour.zpe.types.ZPEList;
 
 import java.util.HashMap;
@@ -26,12 +30,12 @@ public class Plugin implements ZPELibrary {
   public class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction{
 
     @Override
-    public Object MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment) {
+    public ZPEType MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment, ZPEFunction current) {
       SerialPort[] ports = SerialPort.getCommPorts();
       ZPEList output = new ZPEList();
       for(SerialPort p : ports) {
         //Add all ports to list
-        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, zpeRuntimeEnvironment.GetCurrentZPEFunction(), "ZPESerialPort");
+        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, current, "src.ZPESerialPort");
         port.p = p;
         output.add(port);
       }

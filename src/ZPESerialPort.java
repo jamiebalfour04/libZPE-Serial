@@ -1,12 +1,18 @@
+package src;
+
 import java.util.HashMap;
 
 import com.fazecast.jSerialComm.SerialPort;
 
 import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
 import jamiebalfour.zpe.core.ZPEObject;
+import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPEPropertyWrapper;
+import jamiebalfour.zpe.interfaces.ZPEType;
+import jamiebalfour.zpe.types.ZPEBoolean;
+import jamiebalfour.zpe.types.ZPEString;
 
-public class ZPESerialPort extends ZPEObject {
+public class ZPESerialPort extends ZPEStructure {
 
   private static final long serialVersionUID = -2658403322308184479L;
   SerialPort p = null;
@@ -22,8 +28,8 @@ public class ZPESerialPort extends ZPEObject {
   public class get_name_Command implements jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod {
 
     @Override
-    public Object MainMethod(HashMap<String, Object> parameters, ZPEObject parent) {
-      return p.getDescriptivePortName();
+    public ZPEType MainMethod(HashMap<String, ZPEType> parameters, ZPEObject parent) {
+      return new ZPEString(p.getDescriptivePortName());
     }
 
     @Override
@@ -46,8 +52,8 @@ public class ZPESerialPort extends ZPEObject {
   public class is_open_Command implements jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod {
 
     @Override
-    public Object MainMethod(HashMap<String, Object> parameters, ZPEObject parent) {
-      return p.isOpen();
+    public ZPEType MainMethod(HashMap<String, ZPEType> parameters, ZPEObject parent) {
+      return new ZPEBoolean(p.isOpen());
     }
 
     @Override
@@ -70,8 +76,8 @@ public class ZPESerialPort extends ZPEObject {
   public class open_Command implements jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod {
 
     @Override
-    public Object MainMethod(HashMap<String, Object> parameters, ZPEObject parent) {
-      return p.openPort();
+    public ZPEType MainMethod(HashMap<String, ZPEType> parameters, ZPEObject parent) {
+      return new ZPEBoolean(p.openPort());
     }
 
     @Override
@@ -94,7 +100,7 @@ public class ZPESerialPort extends ZPEObject {
   public class write_Command implements jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod {
 
     @Override
-    public Object MainMethod(HashMap<String, Object> parameters, ZPEObject parent) {
+    public ZPEType MainMethod(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       byte b = (byte) 3072;
       p.setBaudRate(19200);
       p.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
