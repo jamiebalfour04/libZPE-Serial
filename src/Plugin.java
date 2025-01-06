@@ -27,7 +27,7 @@ public class Plugin implements ZPELibrary {
     return null;
   }
 
-  public class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction{
+  public static class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction{
 
     @Override
     public ZPEType MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment, ZPEFunction current) {
@@ -78,6 +78,7 @@ public class Plugin implements ZPELibrary {
     }
 
   }
+
 
   @Override
   public String getName() {
