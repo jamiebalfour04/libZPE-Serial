@@ -1,12 +1,10 @@
-package src;
-
+import com.fazecast.jSerialComm.SerialPort;
 import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEFunction;
 import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
 import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPECustomFunction;
 import jamiebalfour.zpe.interfaces.ZPELibrary;
-import com.fazecast.jSerialComm.SerialPort;
 import jamiebalfour.zpe.interfaces.ZPEType;
 import jamiebalfour.zpe.types.ZPEList;
 
@@ -17,7 +15,7 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public Map<String, ZPECustomFunction> getFunctions() {
-    Map<String, ZPECustomFunction> m = new HashMap<String, ZPECustomFunction>();
+    Map<String, ZPECustomFunction> m = new HashMap<>();
     m.put("list_serial_ports", new ListSerialPorts());
     return m;
   }
@@ -27,15 +25,25 @@ public class Plugin implements ZPELibrary {
     return null;
   }
 
-  public static class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction{
+  @Override
+  public String getName() {
+    return "libSerial";
+  }
+
+  @Override
+  public String getVersionInfo() {
+    return "1.0";
+  }
+
+  public static class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction {
 
     @Override
     public ZPEType MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment, ZPEFunction current) {
       SerialPort[] ports = SerialPort.getCommPorts();
       ZPEList output = new ZPEList();
-      for(SerialPort p : ports) {
+      for (SerialPort p : ports) {
         //Add all ports to list
-        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, current, "src.ZPESerialPort");
+        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, current, "ZPESerialPort");
         port.p = p;
         output.add(port);
       }
@@ -77,16 +85,5 @@ public class Plugin implements ZPELibrary {
       return YASSByteCodes.LIST;
     }
 
-  }
-
-
-  @Override
-  public String getName() {
-    return "libZPE-Serial";
-  }
-
-  @Override
-  public String getVersionInfo() {
-    return "1.0";
   }
 }
