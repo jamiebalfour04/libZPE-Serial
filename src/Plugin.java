@@ -1,4 +1,5 @@
 import com.fazecast.jSerialComm.SerialPort;
+import jamiebalfour.generic.BinarySearchTree;
 import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEFunction;
 import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
@@ -38,20 +39,6 @@ public class Plugin implements ZPELibrary {
   public static class ListSerialPorts implements jamiebalfour.zpe.interfaces.ZPECustomFunction {
 
     @Override
-    public ZPEType MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment, ZPEFunction current) {
-      SerialPort[] ports = SerialPort.getCommPorts();
-      ZPEList output = new ZPEList();
-      for (SerialPort p : ports) {
-        //Add all ports to list
-        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, current, "ZPESerialPort");
-        port.p = p;
-        output.add(port);
-      }
-
-      return output;
-    }
-
-    @Override
     public String getManualEntry() {
       // TODO Auto-generated method stub
       return null;
@@ -72,6 +59,20 @@ public class Plugin implements ZPELibrary {
     @Override
     public String[] getParameterNames() {
       return new String[0];
+    }
+
+    @Override
+    public ZPEType MainMethod(HashMap<String, Object> hashMap, ZPERuntimeEnvironment zpeRuntimeEnvironment, ZPEFunction zpeFunction) {
+      SerialPort[] ports = SerialPort.getCommPorts();
+      ZPEList output = new ZPEList();
+      for (SerialPort p : ports) {
+        //Add all ports to list
+        ZPESerialPort port = new ZPESerialPort(zpeRuntimeEnvironment, zpeFunction, "ZPESerialPort");
+        port.p = p;
+        output.add(port);
+      }
+
+      return output;
     }
 
     @Override
