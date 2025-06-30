@@ -33,7 +33,12 @@ public class ZPESerialPort extends ZPEStructure {
 
     @Override
     public String[] getParameterNames() {
-      return new String[0];
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
     }
 
     @Override
@@ -57,7 +62,12 @@ public class ZPESerialPort extends ZPEStructure {
 
     @Override
     public String[] getParameterNames() {
-      return new String[0];
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
     }
 
     @Override
@@ -81,7 +91,12 @@ public class ZPESerialPort extends ZPEStructure {
 
     @Override
     public String[] getParameterNames() {
-      return new String[0];
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
     }
 
     @Override
@@ -110,7 +125,12 @@ public class ZPESerialPort extends ZPEStructure {
 
     @Override
     public String[] getParameterNames() {
-      return new String[0];
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
     }
 
     @Override
