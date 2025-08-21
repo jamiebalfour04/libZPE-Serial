@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="libZPE-Serial2">
-    <output-path>$PROJECT_DIR$/build</output-path>
-    <root id="archive" name="libZPE-Serial.jar">
-      <element id="module-output" name="libZPE-Serial" />
-      <element id="extracted-dir" path="$USER_HOME$/Dropbox/Programs/JARs/jSerialComm-2.5.3.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
